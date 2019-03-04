@@ -2,6 +2,7 @@
 
 namespace Apps\Backend\Controllers;
 use Phalcon\Mvc\Controller;
+use Apps\Backend\Models\Products;
 
 class ProductsController extends Controller
 {

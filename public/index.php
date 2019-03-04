@@ -1,86 +1,64 @@
 <?php
+use \Phalcon\Mvc\Application;
 
+require_once '../apps/config/routes.php';
+require_once '../apps/config/database.php';
 error_reporting(E_ALL);
 
+/**
+ * 
+ */
+class MyApplication extends Application
+{
+    public function registerServices() {
+        $di = new \Phalcon\DI\FactoryDefault();
+        $di['router'] = myRouters();
+        $di->set('session', function () {
+            $session = new \Phalcon\Session\Adapter\Files();
+            $session->start();
+
+            return $session;
+        });
+        $di->set('mongo', setMongoDb());
+
+        $di->set('collectionManager', collectionManager(), true);
+
+        $this->setDI($di);
+    }
+
+    public function main() {
+
+        $this->registerServices();
+        /**
+         * Register application modules
+         */
+        $this->registerModules(
+            [
+                'frontend' => [
+                    'className' => 'Apps\Frontend\Module',
+                    'path'      => '../apps/frontend/Module.php'
+                ],
+                'backend'  => [
+                    'className' => 'Apps\Backend\Module',
+                    'path'      => '../apps/backend/Module.php'
+                ]
+            ]
+        );
+
+        echo $this->handle()->getContent();
+    }
+
+}
+
 try {
-
-    /**
-     * The FactoryDefault Dependency Injector automatically register the right services providing a full stack framework
-     */
-    $di = new \Phalcon\DI\FactoryDefault();
-
-    /**
-     * Registering a router
-     */
-    $di['router'] = function () {
-
-        $router = new \Phalcon\Mvc\Router(false);
-
-        $router->add('/admin', [
-            'module'     => 'backend',
-            'controller' => 'index',
-            'action'     => 'index'
-        ]);
-
-        $router->add('/index', [
-            'module'     => 'frontend',
-            'controller' => 'index',
-            'action'     => 'index'
-        ]);
-
-        $router->add('/', [
-            'module'     => 'frontend',
-            'controller' => 'index',
-            'action'     => 'index'
-        ]);
-
-        return $router;
-    };
-
-    /**
-     * The URL component is used to generate all kind of urls in the application
-     */
-    // $di->set('url', function () {
-    //     $url = new \Phalcon\Mvc\Url();
-    //     $url->setBaseUri('/');
-
-    //     return $url;
-    // });
-
-    /**
-     * Start the session the first time some component request the session service
-     */
-    $di->set('session', function () {
-        $session = new \Phalcon\Session\Adapter\Files();
-        $session->start();
-
-        return $session;
-    });
+    
 
     /**
      * Handle the request
      */
-    $application = new \Phalcon\Mvc\Application();
+    $application = new MyApplication();
 
-    $application->setDI($di);
-
-    /**
-     * Register application modules
-     */
-    $application->registerModules(
-        [
-            'frontend' => [
-                'className' => 'Modules\Frontend\Module',
-                'path'      => '../apps/frontend/Module.php'
-            ],
-            'backend'  => [
-                'className' => 'Modules\Backend\Module',
-                'path'      => '../apps/backend/Module.php'
-            ]
-        ]
-    );
-
-    echo $application->handle()->getContent();
+    $application->main();
 } catch (Phalcon\Exception $e) {
     echo $e->getMessage();
 } catch (PDOException $e) {

@@ -8,8 +8,8 @@ return new Config(
             'adapter'  => 'Mysql',
             'host'     => 'localhost',
             'username' => 'root',
-            'password' => '',
-            'name'     => 'test',
+            'password' => 'mysql',
+            'name'     => 'docbao',
         ],
         'application' => [
             'controllersDir' => __DIR__ . '/../controllers/',

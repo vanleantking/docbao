@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Frontend;
+namespace Apps\Frontend;
 
 use Phalcon\Loader;
 use Phalcon\Mvc\View;
@@ -22,8 +22,8 @@ class Module implements ModuleDefinitionInterface
 
         $loader->registerNamespaces(
             [
-                'Modules\Frontend\Controllers' => __DIR__ . '/controllers/',
-                'Modules\Frontend\Models' => __DIR__ . '/models/',
+                'Apps\Frontend\Controllers' => __DIR__ . '/controllers/',
+                'Apps\Frontend\Models' => __DIR__ . '/models/',
             ]
         );
 
@@ -44,7 +44,7 @@ class Module implements ModuleDefinitionInterface
 
         $di['dispatcher'] = function () {
             $dispatcher = new Dispatcher();
-            $dispatcher->setDefaultNamespace('Modules\Frontend\Controllers');
+            $dispatcher->setDefaultNamespace('Apps\Frontend\Controllers');
             return $dispatcher;
         };
 

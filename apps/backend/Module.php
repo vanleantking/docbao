@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Backend;
+namespace Apps\Backend;
 
 use Phalcon\Loader;
 use Phalcon\Mvc\View;
@@ -22,8 +22,8 @@ class Module implements ModuleDefinitionInterface
 
         $loader->registerNamespaces(
             [
-                'Modules\Backend\Controllers' => __DIR__ . '/controllers/',
-                'Modules\Backend\Models' => __DIR__ . '/models/',
+                'Apps\Backend\Controllers' => __DIR__ . '/controllers/',
+                'Apps\Backend\Models' => __DIR__ . '/models/',
             ]
         );
 
@@ -44,7 +44,7 @@ class Module implements ModuleDefinitionInterface
 
         $di['dispatcher'] = function () {
             $dispatcher = new Dispatcher();
-            $dispatcher->setDefaultNamespace('Modules\Backend\Controllers');
+            $dispatcher->setDefaultNamespace('Apps\Backend\Controllers');
             return $dispatcher;
         };
 
@@ -56,8 +56,8 @@ class Module implements ModuleDefinitionInterface
             $view = new View();
 
             $view->setViewsDir(__DIR__ . '/views/');
-            // $view->setLayoutsDir('../../common/layouts/');
-            // $view->setTemplateAfter('main');
+            $view->setLayoutsDir('../../common/layouts/');
+            $view->setTemplateAfter('main');
 
             return $view;
         };
