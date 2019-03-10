@@ -1,9 +1,9 @@
 <?php
 
 namespace Modules\Backend\Controllers;
-use Phalcon\Mvc\Controller;
+use Apps\Backend\Controllers\BaseController;
 
-class IndexController extends Controller
+class IndexController extends BaseController
 {
 
     public function indexAction()

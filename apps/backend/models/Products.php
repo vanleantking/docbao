@@ -1,9 +1,9 @@
 <?php
 
 namespace Apps\Backend\Models;
-use Phalcon\Mvc\Model;
+use Phalcon\Mvc\Collection;
 
-class Products extends Model
+class Products extends Collection
 {
 
 }

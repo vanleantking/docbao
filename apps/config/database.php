@@ -3,7 +3,7 @@ use Phalcon\Di\FactoryDefault;
 
 function setMongoDb() {
 	$mongo = new \MongoClient("mongodb://localhost:27017");
-    return $mongo->selectDB('database');	
+    return $mongo->selectDB('docbao');	
 }
 
 function collectionManager() {

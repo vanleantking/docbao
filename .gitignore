@@ -1,0 +1,3 @@
+apps/backend/config/bi-grams.txt
+apps/backend/config/tri-grams.txt
+apps/backend/config/vnmstopwords.txt

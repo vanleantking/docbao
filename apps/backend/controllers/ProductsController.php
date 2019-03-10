@@ -1,10 +1,10 @@
 <?php
 
 namespace Apps\Backend\Controllers;
-use Phalcon\Mvc\Controller;
 use Apps\Backend\Models\Products;
+use Apps\Backend\Controllers\BaseController;
 
-class ProductsController extends Controller
+class ProductsController extends BaseController
 {
     public function indexAction()
     {

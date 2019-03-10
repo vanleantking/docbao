@@ -3,14 +3,13 @@ use \Phalcon\Mvc\Application;
 
 require_once '../apps/config/routes.php';
 require_once '../apps/config/database.php';
-error_reporting(E_ALL);
+require_once '../apps/config/define.php';
 
-/**
- * 
- */
 class MyApplication extends Application
 {
     public function registerServices() {
+        $loader = new \Phalcon\Loader();
+        $loader->registerDirs(array(dirname(__DIR__).'/apps/libs/'))->register();
         $di = new \Phalcon\DI\FactoryDefault();
         $di['router'] = myRouters();
         $di->set('session', function () {
@@ -20,9 +19,8 @@ class MyApplication extends Application
             return $session;
         });
         $di->set('mongo', setMongoDb());
-
         $di->set('collectionManager', collectionManager(), true);
-
+        
         $this->setDI($di);
     }
 
@@ -51,11 +49,6 @@ class MyApplication extends Application
 }
 
 try {
-    
-
-    /**
-     * Handle the request
-     */
     $application = new MyApplication();
 
     $application->main();

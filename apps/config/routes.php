@@ -40,6 +40,15 @@ function myRouters() {
         ]
     );
 
+    $router->add(
+        '/admin/dictionary/',
+        [
+            'module'     => 'backend',
+            'controller' => 'dictionary',
+            'action'     => 'index',
+        ]
+    );
+
     return $router;
 }
 ?>
