@@ -22,8 +22,7 @@ class ReadFile
         $this->buffer = array();
     }
 
-    public function read() {
-        $buffer_read = 8192;
+    public function read($buffer_read = 8192) {
         $size = $this->filesize;
         while ($size > 0) {
             $rlen = $buffer_read > $this->filesize ? $this->filesize : $buffer_read;
@@ -52,6 +51,7 @@ class ReadFile
         return $this->buffer;
     }
 
+    // json encode for utf-8 string
     protected function utf8ize( $mixed, $mode = 'UTF-8' ) {
         if (is_array($mixed)) {
             foreach ($mixed as $key => $value) {
