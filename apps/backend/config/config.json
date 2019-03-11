@@ -1,0 +1,52 @@
+{
+    "config": [
+        {
+            "domain": "vietgiaitri.com",
+            "host_name": "www.vietgiaitri.com",
+            "URL": "vietgiaitri.com",
+            "content_class": "#post-detail",
+            "category_class": "h3 span a span",
+            "special_header": true,
+            "meta_description": "description",
+            "meta_keyword": "keywords",
+            "category": "News",
+            "meta":""
+        },
+        {
+            "domain": "vnexpress.net",
+            "host_name": "www.vnexpress.net",
+            "URL": "vnexpress.net",
+            "content_class": "article.content_detail|.fck_detail|.wrapper",
+            "category_class": ".breadcrumb li h4 a|.breadcrumb li h4 a",
+            "special_header": false,
+            "meta_description": "description",
+            "meta_keyword": "keywords",
+            "category": "News",
+            "meta":""
+        },
+        {
+            "domain": "cafef.vn",
+            "host_name": "http://cafef.vn",
+            "URL": "http://cafef.vn",
+            "content_class": ".contentdetail",
+            "category_class": ".menuheader ul li.acvmenu.active",
+            "special_header": true,
+            "meta_description": "description",
+            "meta_keyword": "keywords",
+            "category": "News",
+            "meta":"news_keywords"
+        },
+        {
+            "domain": "24h.com.vn",
+            "host_name": "http://24h.com.vn",
+            "URL": "http://24h.com.vn",
+            "content_class": "article.nwsHt",
+            "category_class": "a.brmItem.bld",
+            "special_header": true,
+            "meta_description": "description",
+            "meta_keyword": "keywords",
+            "category": "News",
+            "meta":"news_keywords"
+        }
+    ]
+}

@@ -6,6 +6,7 @@ class ReadFile
     public $buffer = array();
     public $filesize;
     public $str = '';
+    public $process_str = '';
  
     public function __construct($filename, $mode = "r")
     {
@@ -35,13 +36,15 @@ class ReadFile
     }
 
     protected function getString($line) {
+        $this->str .= $line;
         $line = str_replace(['[', ']', '"'], '', $line);
-        $this->str .= $line;               
+        $this->process_str .= $line;
     }
 
+    // for process process_str
     public function toArray() {
-        if($this->str != "") {
-            $pieces = explode(', ', trim($this->str));
+        if($this->process_str != "") {
+            $pieces = explode(', ', trim($this->process_str));
             foreach ($pieces as $piece) {
                 $this->buffer[] = trim($piece);
             }
