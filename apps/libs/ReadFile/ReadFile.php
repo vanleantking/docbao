@@ -34,6 +34,7 @@ class ReadFile
         return count($this->buffer);
     }
 
+    // read string every chunk data read
     protected function getString($line) {
         $this->str .= $line;
         $line = str_replace(['[', ']', '"'], '', $line);

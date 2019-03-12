@@ -11,6 +11,9 @@ return new Config(
         ],
         'web_config' => [
             'config' => __DIR__ . '/config.json'
+        ],
+        'proxy' => [
+            'active_proxy' => __DIR__ . '/proxy.json'
         ]
     ]
 );

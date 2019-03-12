@@ -1,10 +1,10 @@
 <?php
 namespace Apps\Backend\Controllers;
 use ReadFile\ReadFile;
-use Phalcon\Mvc\Controller;
+use Apps\Backend\Controllers\BaseController;
 use Apps\Backend\Models\Dictionary;
 
-class DictionaryController extends Controller
+class DictionaryController extends BaseController
 {
 
     public function indexAction()
