@@ -5,11 +5,13 @@ use ReadFile\ReadFile;
 use Apps\Backend\Models\WebConfig;
 
 class WebConfigController extends BaseController {
-	public function __construct() {
-		$this->view->breadcrum = 'Web Config';
-	}
+    public function initialize()
+    {
+        $this->view->breadcrum = 'Web Config';
+        parent::initialize();
+    }
 	public function indexAction() {
-		
+		var_dump('expression');
 	}
 }
 ?>
