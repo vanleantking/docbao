@@ -1,0 +1,20 @@
+<div class="alert alert-success" role="alert">
+	<h4 class="alert-heading">Add Web Config</h4>
+	<p>Web config is declare web structure of a website to crawl content from it.</p>
+</div>
+<div class="card-body">								
+	<form method="post">
+		<?php
+			foreach ($form as $element) { ?>
+			<div class="form-group">
+				<label for="<?php echo $element->getName();?>">
+					<?php echo $element->getLabel();?>
+				</label>
+				<?php echo $element; ?>
+				<?php echo $form->messages($element->getName());?>
+			</div>
+
+		<?php }?>
+	  	<button type="submit" class="btn btn-primary">Submit</button>
+	</form>
+</div>

@@ -24,6 +24,7 @@ class Module implements ModuleDefinitionInterface
             [
                 'Apps\Backend\Controllers' => __DIR__ . '/controllers/',
                 'Apps\Backend\Models' => __DIR__ . '/models/',
+                'Apps\Backend\Forms' => __DIR__ . '/forms/',
             ]
         );
 
