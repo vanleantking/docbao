@@ -20,11 +20,16 @@ class WebConfigController extends BaseController {
 		$configform = new WebConfigForm(new WebConfig());
 
 		if ($this->request->isPost()) {
-			// var_dump($this->security->checkToken());exit;
-			// if ($this->security->checkToken()) {
-				// var_dump('expression');exit;
+			if ($this->security->checkToken()) {
 				$arrPost = $this->request->getPost();
 				if ($configform->isValid($arrPost)) {
+					var_dump(WebConfig::find(
+						[
+							[
+								'URL' => "https://vnexpress.net/kinh-doanh"
+							]
+						]
+					));exit;
 					$webConfig = new WebConfig();
 					$webConfig->domain = $arrPost["domain"];
 					$webConfig->URL = $arrPost["url"];
@@ -48,9 +53,38 @@ class WebConfigController extends BaseController {
 				    }
 				    $this->flash->error("Add fail!");
 				}
-			// }
+			}
 		}
 		$this->view->form = $configform;
 	}
+
+	public function checkConfigExist($data) {
+		$url = $this->processURL($data['url']);	
+
+		$isExist = WebConfig::find(
+			[
+				[
+					'url' => $url
+				]
+			]
+		);
+	}
+
+	public function processURL($url) {
+		$arr_process = array('https://', 'http://', 'www.', '#');
+		foreach ($arr_process as $str) {
+			if ($str == "#") {
+				$url = preg_split("/#/", $url)[0];
+			} else {
+				$url = str_replace($str, '', $url);
+			}
+		}
+		$len_url = strlen($url);
+		if (substr($url, -1) == "/") {
+			$url = substr($url, 0, $len_url-2);
+		}
+	}
+
+
 }
 ?>

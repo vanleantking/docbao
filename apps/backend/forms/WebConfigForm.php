@@ -119,12 +119,6 @@ class WebConfigForm extends BaseForm {
             $get_comment->setLabel('Get comment');
             
         }
-        // Add a text element to put a hidden CSRF
-        $this->add(
-            new Hidden(
-                'csrf'
-            )
-        );
         $this->add($domain);
         $this->add($url);
         $this->add($list_news);

@@ -13,11 +13,6 @@ class MyApplication extends Application
         $loader->registerDirs(array(dirname(__DIR__).'/apps/libs/'))->register();
         $di = new \Phalcon\DI\FactoryDefault();
         $di['router'] = myRouters();
-        $di['session'] = function (){
-            $session = new Files(['uniqueId' => 'crawler']);
-            $session->start();
-            return $session;
-        };
         $di->set('mongo', setMongoDb());
         $di->set('collectionManager', collectionManager(), true);
         $di->set('flash', function() {
@@ -28,6 +23,12 @@ class MyApplication extends Application
                 'warning' => 'alert alert-warning'
             ]);
             return $flash;
+        });
+
+        $di->setShared('session', function () {
+            $session = new Files();
+            $session->start();
+            return $session;
         });
         
         $this->setDI($di);

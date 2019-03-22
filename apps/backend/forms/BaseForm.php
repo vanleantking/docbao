@@ -15,9 +15,14 @@ class BaseForm extends Form {
 	/**
     * This method returns the default value for field 'csrf'
     */
-    public function getCsrf()
-    {
-        return $this->security->getToken();
-    }
+    // public function getCsrf()
+    // {
+    //     return $this->security->getToken();
+    // }
+
+    // public function getCsrfKey()
+    // {
+    //     return $this->security->getTokenKey();
+    // }
 }
 ?>
