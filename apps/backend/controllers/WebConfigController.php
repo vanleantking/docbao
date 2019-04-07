@@ -12,11 +12,30 @@ class WebConfigController extends BaseController {
         parent::initialize();
     }
 	public function indexAction() {
-		$webConfig = WebConfig::find(
+		$webConfig = WebConfig::find(array(
 			'condition' => array(),
-			'sort'
-		)
-		var_dump('expression');
+			'sort' => array(
+				'created_int'=>1),
+			'fields' => array(
+				"domain" => 1,
+				"host_name" => 1,
+			    "URL" => 1,
+			    "list_news" => 1,
+			    "title_news" => 1,
+			    "paginate_rexp" => 1,
+			    "content_class" => 1,
+			    "category_class" => 1,
+			    "special_header" => 1,
+			    "meta_description" => 1,
+			    "meta_keyword" => 1,
+			    "category" => 1,
+			    "meta" => 1,
+			    "comments_class" => 1,
+			    "get_comment" => 1
+			),
+			'limit' => 50)		
+		);
+		$this->view->webConfig = $webConfig;
 	}
 
 	public function addAction() {
@@ -47,6 +66,7 @@ class WebConfigController extends BaseController {
 						$webConfig->meta = $arrPost["meta"];
 						$webConfig->comments_class = $arrPost["comments_class"];
 						$webConfig->get_comment = isset($arrPost["get_comment"]) ? true : false;
+						$webConfig->created_int = time();
 					    if ($webConfig->save()) {
 					    	$this->flash->success("Add success!");
 					    	return $this->response->redirect('webconfig/index');
@@ -74,7 +94,7 @@ class WebConfigController extends BaseController {
 		);
 		return array(
 			'is_exist' => $isExist,
-			'validate_url' => $url)
+			'validate_url' => $url);
 	}
 
 	private function processURL($url) {
@@ -93,7 +113,5 @@ class WebConfigController extends BaseController {
 
 		return $url;
 	}
-
-
 }
 ?>
