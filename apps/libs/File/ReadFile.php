@@ -1,5 +1,5 @@
 <?php
-namespace ReadFile;
+namespace File;
 class ReadFile
 {
     protected $file;

@@ -1,13 +1,14 @@
 <?php
 namespace Apps\Backend\Controllers;
 use Apps\Backend\Controllers\BaseController;
-use ReadFile\ReadFile;
+use File\ReadFile;
+use File\WriteFile;
 use Apps\Backend\Models\WebConfig;
 use Apps\Backend\Forms\WebConfigForm;
 
 class WebConfigController extends BaseController {
     public function initialize()
-    {
+    {    	
         $this->view->breadcrum = 'Web Config';
         parent::initialize();
     }
@@ -18,7 +19,6 @@ class WebConfigController extends BaseController {
 				'created_int'=>1),
 			'fields' => array(
 				"domain" => 1,
-				"host_name" => 1,
 			    "URL" => 1,
 			    "list_news" => 1,
 			    "title_news" => 1,
@@ -50,21 +50,21 @@ class WebConfigController extends BaseController {
 
 					if(!$isExist['is_exist']){
 						$webConfig = new WebConfig();
-						$webConfig->domain = $arrPost["domain"];
-						$webConfig->url = $arrPost["url"];
+						$webConfig->domain = trim($arrPost["domain"]);
+						$webConfig->url = trim($arrPost["url"]);
 						$webConfig->validate_url = $isExist['validate_url'];
-						$webConfig->list_news = $arrPost["list_news"];
-						$webConfig->title_news = $arrPost["title_news"];
-						$webConfig->paginate_rexp = $arrPost["paginate_rexp"];
+						$webConfig->list_news = trim($arrPost["list_news"]);
+						$webConfig->title_news = trim($arrPost["title_news"]);
+						$webConfig->paginate_rexp = trim($arrPost["paginate_rexp"]);
 						$webConfig->homepage = isset($arrPost["homepage"]) ? true : false;
-						$webConfig->content_class = $arrPost["content_class"];
-						$webConfig->category_class = $arrPost["category_class"];
+						$webConfig->content_class = trim($arrPost["content_class"]);
+						$webConfig->category_class = trim($arrPost["category_class"]);
 						$webConfig->special_header = isset($arrPost["special_header"]) ? true : false;
-						$webConfig->meta_description = $arrPost["meta_description"];
-						$webConfig->meta_keyword = $arrPost["meta_keyword"];
-						$webConfig->category = $arrPost["category"];
-						$webConfig->meta = $arrPost["meta"];
-						$webConfig->comments_class = $arrPost["comments_class"];
+						$webConfig->meta_description = trim($arrPost["meta_description"]);
+						$webConfig->meta_keyword = trim($arrPost["meta_keyword"]);
+						$webConfig->category = trim($arrPost["category"]);
+						$webConfig->meta = trim($arrPost["meta"]);
+						$webConfig->comments_class = trim($arrPost["comments_class"]);
 						$webConfig->get_comment = isset($arrPost["get_comment"]) ? true : false;
 						$webConfig->created_int = time();
 					    if ($webConfig->save()) {
@@ -80,6 +80,46 @@ class WebConfigController extends BaseController {
 			}
 		}
 		$this->view->form = $configform;
+	}
+
+	public function exportJsonAction() {
+		$configs = WebConfig::find(array(
+			'conditions' => array(),
+			'order' => $this->order,
+			'limit' => $this->limit,
+			'fields' => array(
+				'domain' => 1,
+				'host_name' => 1,
+				'url' => 1,
+				'validate_url' => 1,
+				'list_news' => 1,
+				'title_news' => 1,
+				'paginate_rexp' => 1,
+				'content_class' => 1,
+				'category_class' => 1,
+				'date_class' => 1,
+				'meta_description' => 1,
+				'meta_keyword' => 1,
+				'special_header' => 1,
+				'category' => 1,
+				'homepage' => 1
+			)
+		));
+
+		$result = array();
+		foreach ($configs as $config) {
+			$tmp = array();
+			foreach ($config as $key => $value) {
+				if ('_id' !== $key) {
+					$tmp[$key] = isset($value) ? $value : false;
+				}
+			}
+			$result['config'][] = $tmp;		
+		}
+		$file_name = DATA . 'config.json';
+		$write = new WriteFile($file_name);
+		$write->writeFile(json_encode($result));
+		echo "Write file success";
 	}
 
 	private function checkConfigExist($data) {

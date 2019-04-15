@@ -1,6 +1,7 @@
 <?php
 use \Phalcon\Mvc\Application;
 use Phalcon\Session\Adapter\Files;
+use Phalcon\Mvc\Url;
 
 require_once '../apps/config/routes.php';
 require_once '../apps/config/database.php';
@@ -24,6 +25,15 @@ class MyApplication extends Application
             ]);
             return $flash;
         });
+
+        $di->setShared(
+            'url',
+            function () {
+                $url = new Url();
+                $url->setBaseUri('http://docbao.local/');
+                return $url;
+            }
+        );
 
         $di->setShared('session', function () {
             $session = new Files();

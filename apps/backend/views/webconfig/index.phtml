@@ -1,63 +1,61 @@
 <div class="alert alert-success" role="alert">
-	<h4 class="alert-heading">Web Config</h4>
+	<h4 class="alert-heading">Web Config</h4>	
+</div>
+<div class="card-body">
+	<button type="button" class="btn btn-outline-primary">
+		<a href="<?php echo $this->url->get('admin/webconfig/add'); ?>">Add Config</a>
+	</button>
 </div>
 <div class="row">
 	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-		<div class="card mb-3">
-			<div class="card-header">
-				<h3><i class="fa fa-table"></i> Basic data table</h3>
-				DataTables is a plug-in for the jQuery Javascript library. It is a highly flexible tool, based upon the foundations of progressive enhancement, and will add advanced interaction controls to any HTML table: pagination, instant search and multi-column ordering. <a target="_blank" href="https://datatables.net/">(more details)</a>
-			</div>
-				
+		<div class="card mb-3">				
 			<div class="card-body">
 				<div class="table-responsive">
-				<table id="web-config" class="table table-bordered table-hover display">
-					<thead>
-						<tr>
-							<th>STT</th>
-							<th>Domain</th>
-							<th>Host name</th>
-							<th>URL</th>
-							<th>Content class</th>
-							<th>Category class</th>
-							<th>Special header</th>
-							<th>Meta description</th>
-							<th>Meta keyword</th>
-							<th>Category</th>
-							<th>Meta</th>
-							<th>List news</th>
-							<th>Title news</th>
-							<th>Pagination regexp</th>
-							<th>Get Comments</th>
-							<th>Comment</th>
-						</tr>
-					</thead>										
-					<tbody>
-						<?php
-						$count = 1;
-						foreach ($webConfig as $config) {
-							?>
-						<tr>
-							<td><?php echo $count; ?></td>
-							<td><?php echo isset($config->domain) ? $config->domain : ''; ?></td>
-							<td><?php echo isset($config->host_name) ? $config->host_name : ''; ?></td>
-							<td><?php echo isset($config->URL) ? $config->URL : ''; ?></td>
-							<td><?php echo isset($config->list_news) ? $config->list_news : ''; ?></td>
-							<td><?php echo isset($config->title_news) ? $config->title_news : ''; ?></td>
-							<td><?php echo isset($config->paginate_rexp) ? $config->paginate_rexp : ''; ?></td>
-							<td><?php echo isset($config->content_class) ? $config->content_class : ''; ?></td>
-							<td><?php echo isset($config->category_class) ? $config->category_class : ''; ?></td>
-							<td><?php echo isset($config->special_header) ? $config->special_header : ''; ?></td>
-							<td><?php echo isset($config->meta_description) ? $config->meta_description : ''; ?></td>
-							<td><?php echo isset($config->meta_keyword) ? $config->meta_keyword : ''; ?></td>
-							<td><?php echo isset($config->category) ? $config->category : ''; ?></td>
-							<td><?php echo isset($config->meta) ? $config->meta : ''; ?></td>
-							<td><?php echo isset($config->comments_class) ? $config->comments_class : ''; ?></td>
-							<td><?php echo isset($config->get_comment) ? $config->get_comment : ''; ?></td>
-						</tr>
-						<?php $count++; }?>
-					</tbody>
-				</table>
+					<table id="web-config" class="table table-bordered table-hover display">
+						<thead>
+							<tr>
+								<th>STT</th>
+								<th>Domain</th>
+								<th>URL</th>
+								<th>Content class</th>
+								<th>Category class</th>
+								<th>Special header</th>
+								<th>Meta description</th>
+								<th>Meta keyword</th>
+								<th>Category</th>
+								<th>Meta</th>
+								<th>List news</th>
+								<th>Title news</th>
+								<th>Pagination regexp</th>
+								<th>Get Comments</th>
+								<th>Comment</th>
+							</tr>
+						</thead>										
+						<tbody>
+							<?php
+							$count = 1;
+							foreach ($webConfig as $config) {
+								?>
+							<tr>
+								<td><?php echo $count; ?></td>
+								<td><?php echo isset($config->domain) ? $config->domain : ''; ?></td>
+								<td><?php echo isset($config->URL) ? $config->URL : ''; ?></td>
+								<td><?php echo isset($config->content_class) ? $config->content_class : ''; ?></td>
+								<td><?php echo isset($config->category_class) ? $config->category_class : ''; ?></td>
+								<td><?php echo isset($config->special_header) ? $config->special_header : ''; ?></td>
+								<td><?php echo isset($config->meta_description) ? $config->meta_description : ''; ?></td>
+								<td><?php echo isset($config->meta_keyword) ? $config->meta_keyword : ''; ?></td>
+								<td><?php echo isset($config->category) ? $config->category : ''; ?></td>
+								<td><?php echo isset($config->meta) ? $config->meta : ''; ?></td>
+								<td><?php echo isset($config->list_news) ? $config->list_news : ''; ?></td>
+								<td><?php echo isset($config->title_news) ? $config->title_news : ''; ?></td>
+								<td><?php echo isset($config->paginate_rexp) ? $config->paginate_rexp : ''; ?></td>
+								<td><?php echo isset($config->comments_class) ? $config->comments_class : ''; ?></td>
+								<td><?php echo isset($config->get_comment) ? $config->get_comment : ''; ?></td>
+							</tr>
+							<?php $count++; }?>
+						</tbody>
+					</table>
 				</div>
 				
 			</div>														

@@ -1,0 +1,22 @@
+<div class="alert alert-success" role="alert">
+	<h4 class="alert-heading">Add Proxy Config</h4>
+	<p>Proxy can help you crawl content from other source more safety</p>
+</div>
+<div class="card-body">								
+	<form method="post">
+		<?php
+			foreach ($form as $element) { ?>
+			<div class="form-group">
+				<label for="<?php echo $element->getName();?>">
+					<?php echo $element->getLabel();?>
+				</label>
+				<?php echo $element; ?>
+				<?php echo $form->messages($element->getName());?>
+			</div>
+
+		<?php }?>
+		<input type='hidden' name='<?php echo $this->security->getTokenKey() ?>'
+        value='<?php echo $this->security->getToken() ?>'/>
+	  	<button type="submit" class="btn btn-primary">Submit</button>
+	</form>
+</div>

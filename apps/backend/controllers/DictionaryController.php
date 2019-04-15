@@ -1,6 +1,6 @@
 <?php
 namespace Apps\Backend\Controllers;
-use ReadFile\ReadFile;
+use File\ReadFile;
 use Apps\Backend\Controllers\BaseController;
 use Apps\Backend\Models\Dictionary;
 

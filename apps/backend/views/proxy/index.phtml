@@ -1,0 +1,47 @@
+<div class="alert alert-success" role="alert">
+	<h4 class="alert-heading">Proxy Config</h4>
+</div>
+<div class="card-body">
+	<button type="button" class="btn btn-outline-primary">
+		<a href="<?php echo $this->url->get('admin/proxy/add'); ?>">Add Proxy</a>
+	</button>
+</div>
+
+<div class="row">
+	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+		<div class="card mb-3">				
+			<div class="card-body">
+				<div class="table-responsive">
+					<table id="web-config" class="table table-bordered table-hover display">
+						<thead>
+							<tr>
+								<th>STT</th>
+								<th>IP</th>
+								<th>Port</th>
+								<th>Schema</th>
+								<th>Status</th>
+								<th>Created</th>
+							</tr>
+						</thead>										
+						<tbody>
+							<?php
+							$count = 1;
+							foreach ($proxies as $proxy) {
+								?>
+							<tr>
+								<td><?php echo $count; ?></td>
+								<td><?php echo isset($proxy->proxy_ip) ? $proxy->proxy_ip : ''; ?></td>
+								<td><?php echo isset($proxy->port) ? $proxy->port : ''; ?></td>
+								<td><?php echo isset($proxy->schema) ? $proxy->schema : ''; ?></td>
+								<td><?php echo isset($proxy->status) ? $proxy->status : ''; ?></td>
+								<td><?php echo isset($proxy->created) ? $proxy->created : ''; ?></td>
+							</tr>
+							<?php $count++; }?>
+						</tbody>
+					</table>
+				</div>
+				
+			</div>														
+		</div><!-- end card-->	
+	</div>
+</div>
