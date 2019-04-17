@@ -2,9 +2,15 @@
 	<h4 class="alert-heading">Proxy Config</h4>
 </div>
 <div class="card-body">
-	<button type="button" class="btn btn-outline-primary">
-		<a href="<?php echo $this->url->get('admin/proxy/add'); ?>">Add Proxy</a>
-	</button>
+	<div class="row">
+		<button type="button" class="btn btn-outline-primary">
+			<a href="<?php echo $this->url->get('admin/proxy/add'); ?>">Add Proxy</a>
+		</button>
+		<button type="button" class="btn btn-outline-primary">
+			<a href="<?php echo $this->url->get('admin/proxy/exportJson'); ?>">Export</a>
+		</button>
+	</div>
+	
 </div>
 
 <div class="row">

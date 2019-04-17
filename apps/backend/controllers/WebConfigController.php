@@ -82,6 +82,52 @@ class WebConfigController extends BaseController {
 		$this->view->form = $configform;
 	}
 
+	public function editAction($id) {
+		$config = WebConfig::findById($id);
+		if (!$config) {
+			$this->flash->error("Have no this config");
+	    	return $this->response->redirect('webconfig/index');
+		}
+		$options = array(
+			'edit' => 1);
+		$configform = new WebConfigForm($config, $options);
+		if ($this->request->isPost()) {
+			if ($this->security->checkToken()) {
+				$arrPost = $this->request->getPost();
+				if ($configform->isValid($arrPost)) {
+					$isExist = $this->checkConfigExist($arrPost['url']);
+
+					if(!$isExist['is_exist']){
+						$config->domain = trim($arrPost["domain"]);
+						$config->url = trim($arrPost["url"]);
+						$config->validate_url = $isExist['validate_url'];
+						$config->list_news = trim($arrPost["list_news"]);
+						$config->title_news = trim($arrPost["title_news"]);
+						$config->paginate_rexp = trim($arrPost["paginate_rexp"]);
+						$config->homepage = isset($arrPost["homepage"]) ? true : false;
+						$config->content_class = trim($arrPost["content_class"]);
+						$config->category_class = trim($arrPost["category_class"]);
+						$config->special_header = isset($arrPost["special_header"]) ? true : false;
+						$config->meta_description = trim($arrPost["meta_description"]);
+						$config->meta_keyword = trim($arrPost["meta_keyword"]);
+						$config->category = trim($arrPost["category"]);
+						$config->meta = trim($arrPost["meta"]);
+						$config->comments_class = trim($arrPost["comments_class"]);
+						$config->get_comment = isset($arrPost["get_comment"]) ? true : false;
+					    if ($webConfig->save()) {
+					    	$this->flash->success("Add success!");
+					    	return $this->response->redirect('webconfig/index');
+					    }
+					    $this->flash->error("Add fail!");
+					
+					} else {
+						$this->flash->error("Config exist");
+					}
+				}
+			}
+		}
+	}
+
 	public function exportJsonAction() {
 		$configs = WebConfig::find(array(
 			'conditions' => array(),

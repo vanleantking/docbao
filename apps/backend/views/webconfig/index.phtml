@@ -2,9 +2,14 @@
 	<h4 class="alert-heading">Web Config</h4>	
 </div>
 <div class="card-body">
-	<button type="button" class="btn btn-outline-primary">
-		<a href="<?php echo $this->url->get('admin/webconfig/add'); ?>">Add Config</a>
-	</button>
+	<div class="row">
+		<button type="button" class="btn btn-outline-primary">
+			<a href="<?php echo $this->url->get('admin/webconfig/add'); ?>">Add Config</a>
+		</button>
+		<button type="button" class="btn btn-outline-primary">
+			<a href="<?php echo $this->url->get('admin/webconfig/exportJson'); ?>">Export</a>
+		</button>
+	</div>
 </div>
 <div class="row">
 	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
@@ -29,6 +34,7 @@
 								<th>Pagination regexp</th>
 								<th>Get Comments</th>
 								<th>Comment</th>
+								<th>Action</th>
 							</tr>
 						</thead>										
 						<tbody>
@@ -52,6 +58,7 @@
 								<td><?php echo isset($config->paginate_rexp) ? $config->paginate_rexp : ''; ?></td>
 								<td><?php echo isset($config->comments_class) ? $config->comments_class : ''; ?></td>
 								<td><?php echo isset($config->get_comment) ? $config->get_comment : ''; ?></td>
+								<td><a href="<?php echo $this->url->get('admin/webconfig/edit/') . $config->_id->{'$id'};  ?>">Edit</a></td>
 							</tr>
 							<?php $count++; }?>
 						</tbody>
