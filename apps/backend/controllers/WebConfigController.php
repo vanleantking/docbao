@@ -19,7 +19,7 @@ class WebConfigController extends BaseController {
 				'created_int'=>1),
 			'fields' => array(
 				"domain" => 1,
-			    "URL" => 1,
+			    "url" => 1,
 			    "list_news" => 1,
 			    "title_news" => 1,
 			    "paginate_rexp" => 1,
@@ -46,36 +46,30 @@ class WebConfigController extends BaseController {
 			if ($this->security->checkToken()) {
 				$arrPost = $this->request->getPost();
 				if ($configform->isValid($arrPost)) {
-					$isExist = $this->checkConfigExist($arrPost['url']);
-
-					if(!$isExist['is_exist']){
-						$webConfig = new WebConfig();
-						$webConfig->domain = trim($arrPost["domain"]);
-						$webConfig->url = trim($arrPost["url"]);
-						$webConfig->validate_url = $isExist['validate_url'];
-						$webConfig->list_news = trim($arrPost["list_news"]);
-						$webConfig->title_news = trim($arrPost["title_news"]);
-						$webConfig->paginate_rexp = trim($arrPost["paginate_rexp"]);
-						$webConfig->homepage = isset($arrPost["homepage"]) ? true : false;
-						$webConfig->content_class = trim($arrPost["content_class"]);
-						$webConfig->category_class = trim($arrPost["category_class"]);
-						$webConfig->special_header = isset($arrPost["special_header"]) ? true : false;
-						$webConfig->meta_description = trim($arrPost["meta_description"]);
-						$webConfig->meta_keyword = trim($arrPost["meta_keyword"]);
-						$webConfig->category = trim($arrPost["category"]);
-						$webConfig->meta = trim($arrPost["meta"]);
-						$webConfig->comments_class = trim($arrPost["comments_class"]);
-						$webConfig->get_comment = isset($arrPost["get_comment"]) ? true : false;
-						$webConfig->created_int = time();
-					    if ($webConfig->save()) {
-					    	$this->flash->success("Add success!");
-					    	return $this->response->redirect('webconfig/index');
-					    }
-					    $this->flash->error("Add fail!");
-					
-					} else {
-						$this->flash->error("Config exist");
-					}
+					$validate_url = $this->checkConfigExist($arrPost);
+					$webConfig = new WebConfig();
+					$webConfig->domain = trim($arrPost["domain"]);
+					$webConfig->url = trim($arrPost["url"]);
+					$webConfig->validate_url = $validate_url;
+					$webConfig->list_news = trim($arrPost["list_news"]);
+					$webConfig->title_news = trim($arrPost["title_news"]);
+					$webConfig->paginate_rexp = trim($arrPost["paginate_rexp"]);
+					$webConfig->homepage = isset($arrPost["homepage"]) ? true : false;
+					$webConfig->content_class = trim($arrPost["content_class"]);
+					$webConfig->category_class = trim($arrPost["category_class"]);
+					$webConfig->special_header = isset($arrPost["special_header"]) ? true : false;
+					$webConfig->meta_description = trim($arrPost["meta_description"]);
+					$webConfig->meta_keyword = trim($arrPost["meta_keyword"]);
+					$webConfig->category = trim($arrPost["category"]);
+					$webConfig->meta = trim($arrPost["meta"]);
+					$webConfig->comments_class = trim($arrPost["comments_class"]);
+					$webConfig->get_comment = isset($arrPost["get_comment"]) ? true : false;
+					$webConfig->created_int = time();
+				    if ($webConfig->save()) {
+				    	$this->flash->success("Add success!");
+				    	return $this->response->redirect('webconfig/index');
+				    }
+				    $this->flash->error("Add fail!");
 				}
 			}
 		}
@@ -95,37 +89,32 @@ class WebConfigController extends BaseController {
 			if ($this->security->checkToken()) {
 				$arrPost = $this->request->getPost();
 				if ($configform->isValid($arrPost)) {
-					$isExist = $this->checkConfigExist($arrPost['url']);
-
-					if(!$isExist['is_exist']){
-						$config->domain = trim($arrPost["domain"]);
-						$config->url = trim($arrPost["url"]);
-						$config->validate_url = $isExist['validate_url'];
-						$config->list_news = trim($arrPost["list_news"]);
-						$config->title_news = trim($arrPost["title_news"]);
-						$config->paginate_rexp = trim($arrPost["paginate_rexp"]);
-						$config->homepage = isset($arrPost["homepage"]) ? true : false;
-						$config->content_class = trim($arrPost["content_class"]);
-						$config->category_class = trim($arrPost["category_class"]);
-						$config->special_header = isset($arrPost["special_header"]) ? true : false;
-						$config->meta_description = trim($arrPost["meta_description"]);
-						$config->meta_keyword = trim($arrPost["meta_keyword"]);
-						$config->category = trim($arrPost["category"]);
-						$config->meta = trim($arrPost["meta"]);
-						$config->comments_class = trim($arrPost["comments_class"]);
-						$config->get_comment = isset($arrPost["get_comment"]) ? true : false;
-					    if ($webConfig->save()) {
-					    	$this->flash->success("Add success!");
-					    	return $this->response->redirect('webconfig/index');
-					    }
-					    $this->flash->error("Add fail!");
-					
-					} else {
-						$this->flash->error("Config exist");
-					}
+					$validate_url = $this->checkConfigExist($arrPost);
+					$config->domain = trim($arrPost["domain"]);
+					$config->url = trim($arrPost["url"]);
+					$config->validate_url = $validate_url;
+					$config->list_news = trim($arrPost["list_news"]);
+					$config->title_news = trim($arrPost["title_news"]);
+					$config->paginate_rexp = trim($arrPost["paginate_rexp"]);
+					$config->homepage = isset($arrPost["homepage"]) ? true : false;
+					$config->content_class = trim($arrPost["content_class"]);
+					$config->category_class = trim($arrPost["category_class"]);
+					$config->special_header = isset($arrPost["special_header"]) ? true : false;
+					$config->meta_description = trim($arrPost["meta_description"]);
+					$config->meta_keyword = trim($arrPost["meta_keyword"]);
+					$config->category = trim($arrPost["category"]);
+					$config->meta = trim($arrPost["meta"]);
+					$config->comments_class = trim($arrPost["comments_class"]);
+					$config->get_comment = isset($arrPost["get_comment"]) ? true : false;
+				    if ($config->save()) {
+				    	$this->flash->success("Add success!");
+				    	return $this->response->redirect('webconfig/index');
+				    }
+				    $this->flash->error("Add fail!");
 				}
 			}
 		}
+		$this->view->form = $configform;
 	}
 
 	public function exportJsonAction() {
@@ -169,18 +158,8 @@ class WebConfigController extends BaseController {
 	}
 
 	private function checkConfigExist($data) {
-		$url = $this->processURL($data['url']);	
-		$isExist = WebConfig::find(
-			[
-				[
-
-					'validate_url' => $url
-				]
-			]
-		);
-		return array(
-			'is_exist' => $isExist,
-			'validate_url' => $url);
+		$validate_url = $this->processURL($data['url']);
+		return $validate_url;
 	}
 
 	private function processURL($url) {

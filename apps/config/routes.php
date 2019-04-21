@@ -14,10 +14,11 @@ function myRouters() {
     //     ]
     // );
 
-    $router->add("/admin/:controller/:action", array(
+    $router->add("/admin/:controller/:action/:params", array(
         'module' => 'backend',
         'controller' => 1,
         'action' => 2,
+        'params' => 3,
     ));
 
     return $router;

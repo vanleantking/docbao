@@ -93,27 +93,27 @@ class WebConfigForm extends BaseForm {
         if (isset($options['edit']) && $options['edit']) {
             $domain->setDefault($webConfig->domain);
             $url->setDefault($webConfig->url);
-            $list_news->setDefault($webConfig->list_news);
-            $paginate_rexp->setDefault($webConfig->paginate_rexp);
-            $content_class->setDefault($webConfig->content_class);
-            $category_class->setDefault($webConfig->category_class);
-            $meta_description->setDefault($webConfig->meta_description);
-            $meta_keyword->setDefault($webConfig->meta_keyword);
-            $category->setDefault($webConfig->category);
-            $meta->setDefault($webConfig->meta);
-            $comments_class->setDefault($webConfig->comments_class);
+            $list_news->setDefault(isset($webConfig->list_news) ? $webConfig->list_news : '');
+            $paginate_rexp->setDefault(isset($webConfig->paginate_rexp)? $webConfig->paginate_rexp : '');
+            $content_class->setDefault(isset($webConfig->content_class)? $webConfig->content_class : '');
+            $category_class->setDefault(isset($webConfig->category_class)? $webConfig->category_class : '');
+            $meta_description->setDefault(isset($webConfig->meta_description)? $webConfig->meta_description : '');
+            $meta_keyword->setDefault(isset($webConfig->meta_keyword)? $webConfig->meta_keyword : '');
+            $category->setDefault(isset($webConfig->category)? $webConfig->category : '');
+            $meta->setDefault(isset($webConfig->meta)? $webConfig->meta : '');
+            $comments_class->setDefault(isset($webConfig->comments_class)? $webConfig->comments_class : '');
             $special_header = new Check('special_header', array(
-                'value' => $webConfig->special_header == 'off' ? false : true,
+                'value' => isset($webConfig->special_header) ? $webConfig->special_header : fase,
                 'class' => 'switch-button'
             ));
             $special_header->setLabel('Special header');
             $homepage = new Check('homepage', array(
-                'value' => $webConfig->homepage == 'off' ? false : true,
+                'value' => isset($webConfig->homepage) ? $webConfig->homepage : false,
                 'class' => 'switch-button'
             ));
             $homepage->setLabel('Is homepage');
             $get_comment = new Check('get_comment', array(
-                'value' => $webConfig->get_comment == 'off' ? false : true,
+                'value' => isset($webConfig->get_comment) ? $webConfig->get_comment : false,
                 'class' => 'switch-button'
             ));
             $get_comment->setLabel('Get comment');

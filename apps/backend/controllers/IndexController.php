@@ -6,6 +6,12 @@ use Apps\Backend\Controllers\BaseController;
 class IndexController extends BaseController
 {
 
+	public function initialize()
+    {    	
+        $this->view->breadcrum = 'Home';
+        parent::initialize();
+    }
+
     public function indexAction()
     {
     }
