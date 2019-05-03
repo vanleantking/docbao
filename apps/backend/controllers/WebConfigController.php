@@ -65,6 +65,9 @@ class WebConfigController extends BaseController {
 					$webConfig->comments_class = trim($arrPost["comments_class"]);
 					$webConfig->get_comment = isset($arrPost["get_comment"]) ? true : false;
 					$webConfig->created_int = time();
+					$webConfig->created_str = date('Y-m-d H:i:s', time());
+					$webConfig->edit_int = time();
+					$webConfig->edit_str = date('Y-m-d H:i:s', time());
 				    if ($webConfig->save()) {
 				    	$this->flash->success("Add success!");
 				    	return $this->response->redirect('webconfig/index');
@@ -105,6 +108,8 @@ class WebConfigController extends BaseController {
 					$config->category = trim($arrPost["category"]);
 					$config->meta = trim($arrPost["meta"]);
 					$config->comments_class = trim($arrPost["comments_class"]);
+					$config->edit_int = time();
+					$config->edit_str = date('Y-m-d H:i:s', time());
 					$config->get_comment = isset($arrPost["get_comment"]) ? true : false;
 				    if ($config->save()) {
 				    	$this->flash->success("Add success!");
@@ -124,7 +129,6 @@ class WebConfigController extends BaseController {
 			'limit' => $this->limit,
 			'fields' => array(
 				'domain' => 1,
-				'host_name' => 1,
 				'url' => 1,
 				'validate_url' => 1,
 				'list_news' => 1,
@@ -132,7 +136,6 @@ class WebConfigController extends BaseController {
 				'paginate_rexp' => 1,
 				'content_class' => 1,
 				'category_class' => 1,
-				'date_class' => 1,
 				'meta_description' => 1,
 				'meta_keyword' => 1,
 				'special_header' => 1,
