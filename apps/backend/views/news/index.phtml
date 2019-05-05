@@ -21,6 +21,7 @@
 							<tr>
 								<th>STT</th>
 								<th>Title</th>
+								<th>From</th>
 								<th>Description</th>
 								<th>Publish Date</th>
 								<th>Action</th>
@@ -33,6 +34,7 @@
 							<tr>
 								<td><?php echo $count; ?></td>
 								<td><a href="<?php echo $enew->url?>"><?php echo $enew->title?></a></td>
+								<td><?php echo $enew->domain ?></td>
 								<td><?php echo $enew->description ?></td>
 								<td><?php echo $enew->publish_date ?></td>
 								<td><a href="<?php echo $this->url->get('admin/webconfig/edit/') . $config->_id->{'$id'};  ?>">Edit</a></td>

@@ -23,9 +23,9 @@ class NewsController extends BaseController {
 			'fields' => array(
 				"url" => 1,
 			    "title" => 1,
+			    "domain" => 1,
 			    "description" => 1,
 			    "publish_date" => 1,
-			    "keyword" => 1,
 			    "publish_date" => 1
 			),
 			'limit' => 50)		
