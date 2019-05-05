@@ -31,7 +31,8 @@ class WebConfigController extends BaseController {
 			    "category" => 1,
 			    "meta" => 1,
 			    "comments_class" => 1,
-			    "get_comment" => 1
+			    "get_comment" => 1,
+			    "publish_date" => 1
 			),
 			'limit' => 50)		
 		);
@@ -63,6 +64,7 @@ class WebConfigController extends BaseController {
 					$webConfig->category = trim($arrPost["category"]);
 					$webConfig->meta = trim($arrPost["meta"]);
 					$webConfig->comments_class = trim($arrPost["comments_class"]);
+					$webConfig->publish_date = trim($arrPost["publish_date"]);
 					$webConfig->get_comment = isset($arrPost["get_comment"]) ? true : false;
 					$webConfig->created_int = time();
 					$webConfig->created_str = date('Y-m-d H:i:s', time());
@@ -107,6 +109,7 @@ class WebConfigController extends BaseController {
 					$config->meta_keyword = trim($arrPost["meta_keyword"]);
 					$config->category = trim($arrPost["category"]);
 					$config->meta = trim($arrPost["meta"]);
+					$config->publish_date = trim($arrPost["publish_date"]);
 					$config->comments_class = trim($arrPost["comments_class"]);
 					$config->edit_int = time();
 					$config->edit_str = date('Y-m-d H:i:s', time());
@@ -140,7 +143,8 @@ class WebConfigController extends BaseController {
 				'meta_keyword' => 1,
 				'special_header' => 1,
 				'category' => 1,
-				'homepage' => 1
+				'homepage' => 1,
+				'publish_date' => 1,
 			)
 		));
 

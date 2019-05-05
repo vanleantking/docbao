@@ -34,6 +34,7 @@
 								<th>Pagination regexp</th>
 								<th>Get Comments</th>
 								<th>Comment</th>
+								<th>Publish Date</th>
 								<th>Action</th>
 							</tr>
 						</thead>										
@@ -58,6 +59,7 @@
 								<td><?php echo isset($config->paginate_rexp) ? $config->paginate_rexp : ''; ?></td>
 								<td><?php echo isset($config->comments_class) ? $config->comments_class : ''; ?></td>
 								<td><?php echo isset($config->get_comment) ? $config->get_comment : ''; ?></td>
+								<td><?php echo isset($config->publish_date) ? $config->publish_date : ''; ?></td>
 								<td><a href="<?php echo $this->url->get('admin/webconfig/edit/') . $config->_id->{'$id'};  ?>">Edit</a></td>
 							</tr>
 							<?php $count++; }?>

@@ -1,0 +1,48 @@
+<div class="alert alert-success" role="alert">
+	<h4 class="alert-heading">News</h4>	
+</div>
+<div class="card-body">
+	<div class="row">
+		<button type="button" class="btn btn-outline-primary">
+			<a href="<?php echo $this->url->get('admin/webconfig/add'); ?>">Add Config</a>
+		</button>
+		<button type="button" class="btn btn-outline-primary">
+			<a href="<?php echo $this->url->get('admin/webconfig/exportJson'); ?>">Export</a>
+		</button>
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+		<div class="card mb-3">				
+			<div class="card-body">
+				<div class="table-responsive">
+					<table id="web-config" class="table table-bordered table-hover display">
+						<thead>
+							<tr>
+								<th>STT</th>
+								<th>Title</th>
+								<th>Description</th>
+								<th>Publish Date</th>
+								<th>Action</th>
+							</tr>
+						</thead>										
+						<tbody>
+							<?php
+							$count = 1;
+							foreach ($news as $enew) {?>
+							<tr>
+								<td><?php echo $count; ?></td>
+								<td><a href="<?php echo $enew->url?>"><?php echo $enew->title?></a></td>
+								<td><?php echo $enew->description ?></td>
+								<td><?php echo $enew->publish_date ?></td>
+								<td><a href="<?php echo $this->url->get('admin/webconfig/edit/') . $config->_id->{'$id'};  ?>">Edit</a></td>
+							</tr>
+							<?php $count++; }?>
+						</tbody>
+					</table>
+				</div>
+				
+			</div>														
+		</div><!-- end card-->	
+	</div>
+</div>

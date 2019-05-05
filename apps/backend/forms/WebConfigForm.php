@@ -90,6 +90,11 @@ class WebConfigForm extends BaseForm {
             array('class'=>'switch-button') );
         $get_comment->setLabel('Get comment');
 
+        $publish_date = new Text('publish_date',
+            array('class'=> 'form-control',
+                'placeholder' => 'element tag for get publish date news info'));
+        $publish_date->setLabel('Publish date');
+
         if (isset($options['edit']) && $options['edit']) {
             $domain->setDefault($webConfig->domain);
             $url->setDefault($webConfig->url);
@@ -117,6 +122,7 @@ class WebConfigForm extends BaseForm {
                 'class' => 'switch-button'
             ));
             $get_comment->setLabel('Get comment');
+            $publish_date->setDefault(isset($webConfig->publish_date)? $webConfig->publish_date : '');
             
         }
         $this->add($domain);
@@ -134,6 +140,7 @@ class WebConfigForm extends BaseForm {
         $this->add($meta);
         $this->add($comments_class);
         $this->add($get_comment);
+        $this->add($publish_date);
     }
 }
 
