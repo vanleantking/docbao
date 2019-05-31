@@ -129,7 +129,6 @@ class WebConfigController extends BaseController {
 		$configs = WebConfig::find(array(
 			'conditions' => array(),
 			'order' => $this->order,
-			'limit' => $this->limit,
 			'fields' => array(
 				'domain' => 1,
 				'url' => 1,

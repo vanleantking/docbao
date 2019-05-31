@@ -30,7 +30,6 @@ class ProxyController extends BaseController {
 				'status' => true
 			),
 			'order' => $this->order,
-			'limit' => $this->limit,
 			'fields' => array(
 				'_id' => false,
 				'proxy_ip' => 1,
