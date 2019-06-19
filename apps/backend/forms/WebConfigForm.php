@@ -76,6 +76,11 @@ class WebConfigForm extends BaseForm {
                 'placeholder' => 'category for this url: news, hitech..'));
         $category->setLabel('Category domain');
 
+        $category_type = new Text('category_type',
+            array('class'=> 'form-control',
+                'placeholder' => 'bai_viet, review'));
+        $category_type->setLabel('Category type');
+
         $meta = new Text('meta',
             array('class'=> 'form-control',
                 'placeholder' => 'get other meta tags from url'));
@@ -105,6 +110,7 @@ class WebConfigForm extends BaseForm {
             $meta_description->setDefault(isset($webConfig->meta_description)? $webConfig->meta_description : '');
             $meta_keyword->setDefault(isset($webConfig->meta_keyword)? $webConfig->meta_keyword : '');
             $category->setDefault(isset($webConfig->category)? $webConfig->category : '');
+            $category_type->setDefault(isset($webConfig->category_type)? $webConfig->category_type : '');
             $meta->setDefault(isset($webConfig->meta)? $webConfig->meta : '');
             $comments_class->setDefault(isset($webConfig->comments_class)? $webConfig->comments_class : '');
             $special_header = new Check('special_header', array(
@@ -133,6 +139,7 @@ class WebConfigForm extends BaseForm {
         $this->add($homepage);
         $this->add($content_class);
         $this->add($category_class);
+        $this->add($category_type);
         $this->add($special_header);
         $this->add($meta_description);
         $this->add($meta_keyword);

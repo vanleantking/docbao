@@ -29,6 +29,7 @@ class WebConfigController extends BaseController {
 			    "meta_description" => 1,
 			    "meta_keyword" => 1,
 			    "category" => 1,
+			    "category_type" => 1,
 			    "meta" => 1,
 			    "comments_class" => 1,
 			    "get_comment" => 1,
@@ -58,6 +59,7 @@ class WebConfigController extends BaseController {
 					$webConfig->homepage = isset($arrPost["homepage"]) ? true : false;
 					$webConfig->content_class = trim($arrPost["content_class"]);
 					$webConfig->category_class = trim($arrPost["category_class"]);
+					$webConfig->category_type = strtolower(trim($arrPost["category_type"]));
 					$webConfig->special_header = isset($arrPost["special_header"]) ? true : false;
 					$webConfig->meta_description = trim($arrPost["meta_description"]);
 					$webConfig->meta_keyword = trim($arrPost["meta_keyword"]);
@@ -104,6 +106,7 @@ class WebConfigController extends BaseController {
 					$config->homepage = isset($arrPost["homepage"]) ? true : false;
 					$config->content_class = trim($arrPost["content_class"]);
 					$config->category_class = trim($arrPost["category_class"]);
+					$config->category_type = strtolower(trim($arrPost["category_type"]));
 					$config->special_header = isset($arrPost["special_header"]) ? true : false;
 					$config->meta_description = trim($arrPost["meta_description"]);
 					$config->meta_keyword = trim($arrPost["meta_keyword"]);
@@ -138,6 +141,7 @@ class WebConfigController extends BaseController {
 				'paginate_rexp' => 1,
 				'content_class' => 1,
 				'category_class' => 1,
+				'category_type' => 1,
 				'meta_description' => 1,
 				'meta_keyword' => 1,
 				'special_header' => 1,
