@@ -139,6 +139,7 @@ class WebConfigController extends BaseController {
 				'list_news' => 1,
 				'title_news' => 1,
 				'paginate_rexp' => 1,
+				'comments_class' => 1,
 				'content_class' => 1,
 				'category_class' => 1,
 				'category_type' => 1,
